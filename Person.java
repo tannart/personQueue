@@ -1,51 +1,45 @@
-public class Person implement PersonQueue{
-    private int age;
-	private String name;
-	private Person next, previous, head, tail;
-	private static int queueSize;
+public class Person{
+    private int items;
+	private Person next, prev, end;
+	private static int queueSize = 0;
 	
-	public Person(int age, String name){
-	this.age = age;
-	this.name = name;
+	public Person(int items){
+	this.items = items;
 	this.next = null;
-	this.previous = null;
+	this.prev = null;
 	}
 	
 	public Person getNext(){
 	    return next;
 	}
+	
 	public Person getPrev(){
 	    return prev;
 	}
-	public String getName(){
-	    return name;
+
+	public int getItems(){
+	    return items;
 	}
-	public int getAge(){
-	    return age;
+
+	public int getQueueSize(){
+	    return queueSize;
 	}
-	public Person getHead(){
-	    return head;
-	}
+
 	
-	public void insert(Person newPerson){
-	    if(this.next == null){
+	public void addPerson(Person newPerson){
+        if(this.next == null){
 		    this.next = newPerson;
 			newPerson.prev = this;
+			queueSize++;
+			System.out.println(newPerson.getItems());
 		} else { 
 		    this.next.addPerson(newPerson);
 		}
 	}
 	
-	public boolean deletePerson(Person thePerson){
-	    if(this.next == null){
-		    return false;
-		} else if(this.next.name.equals(thePerson.name)){
-		    this.next = next.next;
-			this.next.next.prev = this;
-			return true;
-		} else {
-		    return this.next.deletePerson(thePerson);
-		}
-	}
+	public void servePerson(){
+	    this.next = this.next.getNext();
+		queueSize--;
+	}	
 }
 	
