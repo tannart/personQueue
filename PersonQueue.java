@@ -1,5 +1,5 @@
 public interface PersonQueue{
     
-	void insert(Person person);
-	person retrieve();
+	void addPerson(Person person);
+	void retrieve();
 }
